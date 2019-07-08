@@ -1,0 +1,179 @@
+{
+  "PolicyName": "cupc-mseu-devportal-lambda-policy",
+  "PolicyDocument": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": [
+          "s3:ListBucket",
+          "s3: GetBucketLocation",
+          "s3: ListAllMyBuckets",
+          "s3: GetObject",
+          "s3: ListObjects",
+          "s3:PutObject",
+          "s3: DeleteObject",
+          "s3: ListBucketVersions"
+        ],
+        "Resource": [
+          "arn: aws: s3:::cupc-*",
+          "arn: aws: s3:::cupc-*/*"
+        ],
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "logs:CreateLogGroup",
+          "logs: CreateLogStream",
+          "logs: GetLogEvents",
+          "logs: PutLogEvents",
+          "logs: DescribeLogGroups",
+          "logs:DescribeLogStreams",
+          "logs: PutRetentionPolicy"
+        ],
+        "Resource": [
+          "arn:aws: logs: ap-southeast-2: *: *"
+        ],
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "lambda: CreateFunction",
+          "lambda: GetFunction",
+          "lambda: DeleteFunction",
+          "lambda:Invoke",
+          "lambda: ListFunctions"
+        ],
+        "Resource": [
+          "arn:aws: lambda::: function: developer-portal-lambda-*"
+        ],
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "lambda: CreateFunction"
+        ],
+        "Resource": "*",
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "dynamodb: Get*",
+          "dynamodb: Put*",
+          "dynamodb:Describe*",
+          "dynamodb: Query",
+          "dynamodb: DeleteItem",
+          "dynamodb: UpdateItem"
+        ],
+        "Resource": [
+          "arn: aws:dynamodb: ap-southeast-2: ${AWS:: AccountId}: table/cupc-developer-portal-lambda-*"
+        ],
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "dynamodb: Create*"
+        ],
+        "Resource": "*",
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "elasticloadbalancing: AddListenerCertificates",
+          "elasticloadbalancing:AddTags",
+          "elasticloadbalancing: DeleteListener",
+          "elasticloadbalancing: DeleteLoadBalancer",
+          "elasticloadbalancing: DeleteRule",
+          "elasticloadbalancing: DeleteTargetGroup",
+          "elasticloadbalancing:DeregisterTargets",
+          "elasticloadbalancing: DescribeAccountLimitsr",
+          "elasticloadbalancing: DescribeListenerCertificates",
+          "elasticloadbalancing: DescribeListeners",
+          "elasticloadbalancing: DescribeLoadBalancerAttributes",
+          "elasticloadbalancing:DescribeLoadBalancers",
+          "elasticloadbalancing: DescribeRules",
+          "elasticloadbalancing: DescribeSSLPolicies",
+          "elasticloadbalancing: DescribeTags",
+          "elasticloadbalancing: DescribeTargetGroupAttributesancer",
+          "elasticloadbalancing:DescribeTargetGroupsncer",
+          "elasticloadbalancing: DescribeTargetHealth",
+          "elasticloadbalancing: ModifyListener",
+          "elasticloadbalancing: ModifyLoadBalancerAttributes",
+          "elasticloadbalancing: ModifyRuleate",
+          "elasticloadbalancing:ModifyTargetGrouperver",
+          "elasticloadbalancing: ModifyTargetGroupAttributes"
+        ],
+        "Resource": [
+          "arn:aws: elasticloadbalancing: ap-southeast-2: ${AWS:: AccountId}: loadbalancer/app/dev-portal-lambda-alb-*"
+        ],
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "elasticloadbalancing: Create*"
+        ],
+        "Resource": "*",
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "kms: Encrypt",
+          "kms: Decrypt",
+          "kms: DescribeKey",
+          "kms:GenerateDataKey*",
+          "kms: List*",
+          "kms: ReEncrypt*",
+          "kms: CreateGrant"
+        ],
+        "Resource": [
+          "arn: aws:kms: ap-southeast-2: 036108257657: key/217680ef-423f-44e4-bdb7-90907a407238"
+        ],
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "sns: List*",
+          "sns:Get*",
+          "sns: Publish",
+          "sns: Subscribe",
+          "sns: ConfirmSubscription",
+          "sns: Unsubscribe",
+          "sns:Delete*"
+        ],
+        "Resource": "arn: aws: sns:ap-southeast-2: ${AWS:: AccountId}:cupc-developer-portal-lambda-*",
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "sns:Create*"
+        ],
+        "Resource": "*",
+        "Effect": "Allow"
+      },
+      {
+        "Action": [
+          "route53: ChangeResourceRecordSets",
+          "route53: ChangeTagsForResource",
+          "route53: CreateHealthCheck",
+          "route53: CreateTrafficPolicy",
+          "route53:CreateTrafficPolicyInstance",
+          "route53: CreateTrafficPolicyVersion",
+          "route53: DeleteHealthCheck",
+          "route53: DeleteReusableDelegationSet",
+          "route53: DeleteTrafficPolicy",
+          "route53:DeleteTrafficPolicyInstance",
+          "route53: Get*",
+          "route53: List*",
+          "route53: TestDNSAnswer",
+          "route53: UpdateHealthCheck",
+          "route53:UpdateTrafficPolicyComment",
+          "route53: UpdateTrafficPolicyInstance"
+        ],
+        "Resource": "arn:aws: route53::: hostedzone/Z1NQCZ13WJ5LJ1",
+        "Effect": "Allow"
+      }
+    ]
+  },
+  "Roles": [
+    "cupc-mseu-devportal-lambda-role"
+  ]
+}
